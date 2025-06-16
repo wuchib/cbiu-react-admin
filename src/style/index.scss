@@ -1,0 +1,21 @@
+@use './reset.scss';
+
+// 隐藏滚动条
+progress {
+  -webkit-appearance: none; /* 必须重置默认样式 */
+  appearance: none;
+  height: 4px; /* 控制高度 */
+  background: transparent; /* 隐藏轨道 */
+}
+
+progress::-webkit-progress-bar {
+  background: transparent; /* Chrome/Safari轨道 */
+}
+
+progress::-webkit-progress-value {
+  background: #1890ff; /* 仅显示进度值 */
+}
+
+progress::-moz-progress-bar {
+  background: #1890ff; /* Firefox进度值 */
+}
