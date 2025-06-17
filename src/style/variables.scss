@@ -1,0 +1,58 @@
+:root {
+      /* 亮色主题 */
+      --color-primary: #3b82f6;
+      /* 蓝色 */
+      --color-primary-light: #93c5fd;
+      --color-primary-dark: #1d4ed8;
+
+      --color-secondary: #10b981;
+      /* 绿色 */
+      --color-secondary-light: #6ee7b7;
+      --color-secondary-dark: #047857;
+
+      /* 中性色等级 (亮色模式) */
+      --color-neutral-100: #f9fafb;
+      --color-neutral-200: #f3f4f6;
+      --color-neutral-300: #e5e7eb;
+      --color-neutral-400: #d1d5db;
+      --color-neutral-500: #9ca3af;
+      --color-neutral-600: #6b7280;
+      --color-neutral-700: #4b5563;
+      --color-neutral-800: #374151;
+      --color-neutral-900: #111827;
+    }
+
+    .dark {
+      /* 暗色主题 */
+      --color-primary: #60a5fa;
+      /* 浅蓝色 */
+      --color-primary-light: #93c5fd;
+      --color-primary-dark: #3b82f6;
+
+      --color-secondary: #34d399;
+      /* 浅绿色 */
+      --color-secondary-light: #6ee7b7;
+      --color-secondary-dark: #10b981;
+
+      /* 中性色等级 (暗色模式) - 反转亮色顺序 */
+      --color-neutral-100: #111827;
+      --color-neutral-200: #1f2937;
+      --color-neutral-300: #374151;
+      --color-neutral-400: #4b5563;
+      --color-neutral-500: #6b7280;
+      --color-neutral-600: #9ca3af;
+      --color-neutral-700: #d1d5db;
+      --color-neutral-800: #e5e7eb;
+      --color-neutral-900: #f9fafb;
+    }
+
+    /* 启用平滑的主题切换 */
+    html {
+      color-scheme: light dark;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body {
+      background-color: var(--color-neutral-100);
+      color: var(--color-neutral-900);
+    }

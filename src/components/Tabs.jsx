@@ -33,9 +33,10 @@ function Tabs() {
                         // 使用unocss来做页签
                         <div
                             key={item.value}
-                            className={'border-rd-md bg-blue-400 mr-2 flex items-center justify-center text-white cursor-pointer text-[14px] inline-flex p-1 pl-2 pr-2' + (location.pathname === `/${item.value}` ? ' bg-blue-500' : '')}
+                            // className={'border-rd-md bg-blue-400 mr-2 flex items-center justify-center text-white cursor-pointer text-[14px] inline-flex p-1 pl-2 pr-2' + (location.pathname === `/${item.value}` ? ' bg-blue-500' : '')}
+                            className={'textwcb-primary'}
                         >
-                            <div onClick={() => { chooseTab(item) }}>{item.label}</div>
+                            <div className="text-primary-light" onClick={() => { chooseTab(item) }}>{item.label}</div>
                             {tabList.length > 1 ? <span className="ml-1 i-tabler:circle-x" onClick={() => { removeTab(item.value)}}></span> : <></>}
                         </div>
                     ))
