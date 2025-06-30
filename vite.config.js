@@ -9,50 +9,55 @@ export default defineConfig({
     react(),
     UnoCSS({
       presets: [presetUno()], // 使用默认预设
+      // presets: [], // 使用默认预设
       theme: {
         // 自定义主题颜色   // [主题约定]-[颜色约定]  颜色枚举：primary | info | warning | danger | success
-        light: {  // 命名空间
-          primary: '#5bab70', //0-背景颜色 1-字色 2-圆角 3-内边距
-          info: '#3f7ee8',
+        bg_colors: {
+          primary: '#5a9cf8',
+          success: '#a2d380',
+          warn: '#dca550',
+          danger: '#e47470',
+          info: '#919398',
         },
-        dark: {  
-          primary: '#86dfba',
+        txt_colors: {
+          primary: '#606266',
+          white: '#ffffff',
         }
       },
-      // theme: {
-      //   // ...
-      //   colors: {
-      //     'veryCool': '#0000ff', // class="text-very-cool"
-      //     'brand': {
-      //       'primary': 'hsla(var(--hue, 217), 78%, 51%)', //class="bg-brand-primary"
-      //     }
-      //   },
-      // },
       // 自定义规则
       rules: [
         ['m-1', { margin: '0.25rem' }],
         [
-          /^textwcb-(.*)$/, // textwcb-primary  textwcb-info
-          (a,b) => { 
-            // [,c]
-            console.log(a,'👻👻👻👻');
-            console.log(b,'😳😳😳😳');
-            const [,c] = a
-            const { theme } = b
-            if (theme.light[c]) {
-              // console.log(theme.light[c], '😮😮😮');
-              // console.log(obj, '💯💯💯💯');
-              return { color: theme.light[c] }
+          /^bg-(.*)$/,
+          ([, c], { theme }) => {
+            if (theme.bg_colors[c]) {
+              return { background: theme.bg_colors[c] }
+            }
+          }
+        ],
+        [
+          /^txt-(.*)$/,
+          ([, c], { theme }) => {
+            if (theme.txt_colors[c]) {
+              return { color: theme.txt_colors[c] }
             }
           }
         ]
       ],
       shortcuts: [
-        {
-          btn: 'py-2 px-4 font-semibold rounded-lg shadow-md', // 普通按钮
-        },
-        [/^btn-(.*)$/, ([, c]) => `bg-${c}-400 text-${c}-100 py-2 px-4 rounded-lg`] // 各种主题的button
+        // 这里可以配合主题定义来用
+        [/^btn-(.*)$/, ([, c]) => `bg-${c} txt-white py-2 px-4 rounded-lg`], // 各种主题的button
+        { 'card': 'w-full h-full p-4 bg-white rounded-md shadow-md' }
       ]
     }),
   ],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001', // 目标服务器地址
+        changeOrigin: true, // 修改请求头中的 origin
+        rewrite: (path) => path.replace(/^\/api/, ''), // 如果需要重写路径，去掉 /api 前缀
+      },
+    },
+  },
 })

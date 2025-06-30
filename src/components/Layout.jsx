@@ -5,9 +5,6 @@ import { Menu } from 'antd';
 import Tabs from './Tabs.jsx';
 import { useEffect } from 'react';
 import useTabsStore from '../store/index.js';
-import { useMatches } from 'react-router-dom';
-
-import Card from './Card.jsx'; // Assuming you have a Card component
 
 function Layout() {
     const tabsStore = useTabsStore();
@@ -25,31 +22,31 @@ function Layout() {
             label: '用户管理',
             icon: <AppstoreOutlined />,
         },
-        {
-            key: '1',
-            label: '模块1',
-            icon: <AppstoreOutlined />,
-        },
-        {
-            key: '2',
-            label: '模块2',
-            icon: <AppstoreOutlined />,
-        },
-        {
-            key: '3',
-            label: '模块3',
-            icon: <AppstoreOutlined />,
-        },
-        {
-            key: '4',
-            label: '模块4',
-            icon: <AppstoreOutlined />,
-        },
-        {
-            key: '5',
-            label: '模块5',
-            icon: <AppstoreOutlined />,
-        }
+        // {
+        //     key: '1',
+        //     label: '模块1',
+        //     icon: <AppstoreOutlined />,
+        // },
+        // {
+        //     key: '2',
+        //     label: '模块2',
+        //     icon: <AppstoreOutlined />,
+        // },
+        // {
+        //     key: '3',
+        //     label: '模块3',
+        //     icon: <AppstoreOutlined />,
+        // },
+        // {
+        //     key: '4',
+        //     label: '模块4',
+        //     icon: <AppstoreOutlined />,
+        // },
+        // {
+        //     key: '5',
+        //     label: '模块5',
+        //     icon: <AppstoreOutlined />,
+        // }
     ];
 
     // 只在首次挂载时执行。添加初识路由对应的页签
@@ -68,25 +65,30 @@ function Layout() {
     return (
         <>
             <div className="">
-                <header className="h-[56px] bg-[#1890ff] flex items-center px-4">
+                {/* 头部 */}
+                <header className="h-[56px] bg-primary flex items-center px-4">
                     <h1 className="text-2xl font-bold">后台管理系统</h1>
                 </header>
-                <div className="h-[calc(var(--vh,1vh)*100-56px)] bg-red-200 flex">
-                    <div className="w-[200px] bg-[#f0f2f5]">
-                        <Menu
+                {/* 主要视图 */}
+                <div className="h-[calc(var(--vh,1vh)*100-56px)] bg-[#F2F3F5] flex p-[8px]">
+                    {/* 侧边菜单栏 */}
+                    <div className="w-[200px]">
+
+                        {/* <Menu
                             onClick={toPage}
                             style={{ width: '100%' }}
                             defaultSelectedKeys={[defaultSelectedKey]}
                             defaultOpenKeys={['sub1']}
                             mode="inline"
                             items={items}
-                        />
+                        /> */}
                     </div>
-                    <div className='w-[calc(100vw-200px)] flex-1 p-4'>
-                        {/* <RouteListener /> */}
+                    {/* 业务面板 */}
+                    <div className='w-[calc(100vw-200px)] h-full flex-1'>
                         <Tabs />
-                        <Card />
-                        <Outlet />
+                        <div className='h-[calc(100%-30px)]'>
+                            <Outlet />
+                        </div>
                     </div>
                 </div>
             </div>

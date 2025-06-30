@@ -1,9 +1,20 @@
+import Card from '../../components/Card/Card.jsx'; // Assuming you have a Card component
+import { loginApi } from '../../network/sys.js';
 function Board() {
+
+  async function login(){
+    const postData = {
+      name:'testuser',
+      password:'123456'
+    }
+    const res = await loginApi(postData)
+    console.log(res);
+  }
+
   return (
-    <div>
-      <h1>Board</h1>
-      <p>这是board页面</p>
-    </div>
+    <Card>
+      <button onClick={()=>{login()}}>登录</button>
+    </Card>
   );
 }
 
