@@ -10,7 +10,7 @@ function Layout() {
     const tabsStore = useTabsStore();
     const navigate = useNavigate()
     const location = useLocation();
-    const defaultSelectedKey = location.pathname.split('/')[1] || 'board'; // 获取当前路由的第一个部分作为默认选中项
+    const defaultSelectedKey = location.pathname; // 获取当前路由的第一个部分作为默认选中项
     const items = [
         {
             key: 'board',
@@ -22,43 +22,44 @@ function Layout() {
             label: '用户管理',
             icon: <AppstoreOutlined />,
         },
-        // {
-        //     key: '1',
-        //     label: '模块1',
-        //     icon: <AppstoreOutlined />,
-        // },
-        // {
-        //     key: '2',
-        //     label: '模块2',
-        //     icon: <AppstoreOutlined />,
-        // },
-        // {
-        //     key: '3',
-        //     label: '模块3',
-        //     icon: <AppstoreOutlined />,
-        // },
-        // {
-        //     key: '4',
-        //     label: '模块4',
-        //     icon: <AppstoreOutlined />,
-        // },
-        // {
-        //     key: '5',
-        //     label: '模块5',
-        //     icon: <AppstoreOutlined />,
-        // }
+        {
+            key: '1',
+            label: '模块1',
+            icon: <AppstoreOutlined />,
+        },
+        {
+            key: '2',
+            label: '模块2',
+            icon: <AppstoreOutlined />,
+        },
+        {
+            key: '3',
+            label: '模块3',
+            icon: <AppstoreOutlined />,
+        },
+        {
+            key: '4',
+            label: '模块4',
+            icon: <AppstoreOutlined />,
+        },
+        {
+            key: '5',
+            label: '模块5',
+            icon: <AppstoreOutlined />,
+        }
     ];
 
     // 只在首次挂载时执行。添加初识路由对应的页签
     useEffect(() => {
-        const defaultRoute = items.find(item => item.key === defaultSelectedKey);
+        console.log(location.pathname,'location.pathname');
+        const defaultRoute = items.find(item => '/layout/' + item.key === defaultSelectedKey);
         tabsStore.updateTabList({ value: defaultRoute.key, label: defaultRoute.label }); // 初始化页签
     }, []);
-    function toPage({  key }) {
+    function toPage({ key }) {
         const clickedItem = items.find(item => item.key === key);
         if (clickedItem) {
-            navigate(`/${key}`); // 跳转  
-            tabsStore.updateTabList({ value: key, label: clickedItem.label }) // 添加页签
+            navigate(`/layout/${key}`); // 跳转  
+            tabsStore.updateTabList({ value: `/layout/${key}`, label: clickedItem.label }) // 添加页签
         }
     }
 
@@ -74,14 +75,14 @@ function Layout() {
                     {/* 侧边菜单栏 */}
                     <div className="w-[200px]">
 
-                        {/* <Menu
+                        <Menu
                             onClick={toPage}
                             style={{ width: '100%' }}
                             defaultSelectedKeys={[defaultSelectedKey]}
                             defaultOpenKeys={['sub1']}
                             mode="inline"
                             items={items}
-                        /> */}
+                        />
                     </div>
                     {/* 业务面板 */}
                     <div className='w-[calc(100vw-200px)] h-full flex-1'>
