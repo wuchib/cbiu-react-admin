@@ -1,1 +1,11 @@
 @use './reset.scss';
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body,#root{
+    background-color: #f1f3f5;
+    height: 100vh;
+    width: 100vw;
+}

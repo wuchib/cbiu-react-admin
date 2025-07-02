@@ -1,0 +1,29 @@
+.layout {
+    display: flex;
+    height: 100%;
+    width: 100%;
+
+    >aside {
+        width: 224px;
+        height: 100%;
+        background: #ffffff;
+        border-right: 1px solid #e4e4e7;
+    }
+
+    >main {
+        flex: 1;
+        height: 100%;
+
+        >header {
+            height: 50px;
+            background: #ffffff;
+            border-bottom: 1px solid #e4e4e7;
+            padding: 0 0 0 8px;
+        }
+        >.tab-wrap{
+            height: 38px;
+            background: #ffffff;
+            border-bottom: 1px solid #e4e4e7;
+        }
+    }
+}
