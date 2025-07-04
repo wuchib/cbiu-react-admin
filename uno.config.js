@@ -1,6 +1,7 @@
 import { defineConfig, presetUno, presetIcons } from 'unocss'
 import transformerDirectives from '@unocss/transformer-directives'
 
+const validWeights = new Set(['100', '200', '300', '400', '500', '600', '700', '800', '900'])
 
 export default defineConfig({
     presets: [
@@ -67,7 +68,7 @@ export default defineConfig({
 
         // 颜色过渡
         ['transition-colors', { 'transition-duration': '.15s', 'transition-property': 'color, background-color, border-color, text-decoration-color, fill, stroke', 'transition-timing-function': 'cubic-bezier(.4,0,.2,1)' }],
-        
+
         // 圆形圆角
         ['circle-radius', { 'border-radius': '50%' }],
 
@@ -77,6 +78,16 @@ export default defineConfig({
         [/^right-(\d+)/, ([, d]) => ({ right: `${d}px` })],
         [/^bottom-(\d+)/, ([, d]) => ({ bottom: `${d}px` })],
         [/^top-(\d+)/, ([, d]) => ({ top: `${d}px` })],
+
+        // 照片object-fit
+        [/^object-(contain|cover|fill|none|scale-down)$/, ([, d]) => ({ 'object-fit': d })],
+
+        // 单行文本省略号
+        ['text-ellipsis', {
+            overflow: 'hidden',
+            'text-overflow': 'ellipsis',
+            'white-space': 'nowrap'
+        }]
     ],
     shortcuts: [
         // icon-button：圆角 6px，宽高 32px，居中对齐

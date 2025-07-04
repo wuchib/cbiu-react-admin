@@ -4,7 +4,6 @@ import UnoCSS from 'unocss/vite'
 import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 
-const validWeights = new Set(['100','200','300','400','500','600','700','800','900'])
 
 // https://vite.dev/config/
 export default defineConfig({
